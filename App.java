@@ -3,7 +3,6 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import view.AnimePresenter;
 import view.SpriteAnime;
-import view.Character;
 
 public class App extends Application {
     public static void main(String[] args) throws Exception {
@@ -14,8 +13,7 @@ public class App extends Application {
     @Override
     public void start(Stage stage) {
         SpriteAnime spriteAnime = new SpriteAnime();
-        Character character = new Character(spriteAnime);
-        new AnimePresenter(spriteAnime, character);
+        new AnimePresenter(spriteAnime);
         stage.setTitle("");
         stage.setScene(new Scene(spriteAnime));
         stage.centerOnScreen();

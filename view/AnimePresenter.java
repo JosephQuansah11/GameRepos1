@@ -6,12 +6,10 @@ import javafx.util.Duration;
 
 public class AnimePresenter {
     private SpriteAnime spriteAnime;
-    private Character character;
     private int count = 0;
     private int walkingPace = 0;
 
-    public AnimePresenter(SpriteAnime spriteAnime, Character character) {
-        this.character = character;
+    public AnimePresenter(SpriteAnime spriteAnime) {
         this.spriteAnime = spriteAnime;
         addEventsHandlers();
         updateViews();
