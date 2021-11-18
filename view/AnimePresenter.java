@@ -7,6 +7,8 @@ import javafx.util.Duration;
 public class AnimePresenter {
     private SpriteAnime spriteAnime;
     private int count = 0;
+    private int running_count = 0;
+    private int runningPace = 0;
     private int walkingPace = 0;
 
     public AnimePresenter(SpriteAnime spriteAnime) {
@@ -17,23 +19,43 @@ public class AnimePresenter {
    
     private void addEventsHandlers() {
 
-        Timeline time = new Timeline(new KeyFrame(Duration.millis(140), a -> {
+        Timeline time = new Timeline(new KeyFrame(Duration.millis(100), a -> {
+
             updateViews();
+            if (running_count > 6) {
+                running_count = 0;
+            } else {
+                running_count++;
+            }
+            if (runningPace > spriteAnime.getCanvas().getWidth()) {
+                runningPace = 0;
+            } else {
+                runningPace += 25;
+            }
+            this.spriteAnime.drawRunningImages(running_count, runningPace);
+
             if (count > 3) {
                 count = 0;
             } else {
                 count++;
             }
-            
             if (walkingPace > spriteAnime.getCanvas().getWidth()) {
                 walkingPace = 0;
             } else {
-                walkingPace+=10;
+                walkingPace += 15;
             }
-            this.spriteAnime.drawImages(count, walkingPace);
-        }));
+            this.spriteAnime.drawWalkingImages(count, walkingPace);
+
+       }));
         time.setCycleCount(Timeline.INDEFINITE);
         time.play();
+
+
+        // Timeline timeline = new Timeline(new KeyFrame(Duration.millis(100), a -> {
+         
+        // }));
+        // timeline.setCycleCount(Timeline.INDEFINITE);
+        // timeline.play();
     }
 
     private void updateViews() {
